@@ -17,7 +17,7 @@ public partial class Sale
 
     public DateTime? End { get; set; }
 
-    public int IdProduct { get; set; }
+    public int? IdProduct { get; set; }
 
-    public virtual Product IdProductNavigation { get; set; } = null!;
+    public virtual Product? IdProductNavigation { get; set; }
 }

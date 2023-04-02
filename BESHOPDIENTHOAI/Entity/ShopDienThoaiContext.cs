@@ -156,9 +156,7 @@ public partial class ShopDienThoaiContext : DbContext
 
             entity.ToTable("Order");
 
-            entity.Property(e => e.Id)
-                .ValueGeneratedNever()
-                .HasColumnName("id");
+            entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Address)
                 .HasMaxLength(50)
                 .HasColumnName("address");
@@ -247,16 +245,12 @@ public partial class ShopDienThoaiContext : DbContext
 
             entity.ToTable("Sale");
 
-            entity.Property(e => e.IdSale)
-                .ValueGeneratedNever()
-                .HasColumnName("id_sale");
+            entity.Property(e => e.IdSale).HasColumnName("id_sale");
             entity.Property(e => e.Describe).HasColumnName("describe");
             entity.Property(e => e.End)
                 .HasColumnType("datetime")
                 .HasColumnName("end");
-            entity.Property(e => e.IdProduct)
-                .ValueGeneratedOnAdd()
-                .HasColumnName("id_product");
+            entity.Property(e => e.IdProduct).HasColumnName("id_product");
             entity.Property(e => e.Promotion).HasColumnName("promotion");
             entity.Property(e => e.Start)
                 .HasColumnType("datetime")
@@ -265,7 +259,6 @@ public partial class ShopDienThoaiContext : DbContext
 
             entity.HasOne(d => d.IdProductNavigation).WithMany(p => p.Sales)
                 .HasForeignKey(d => d.IdProduct)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Sale_Product");
         });
 

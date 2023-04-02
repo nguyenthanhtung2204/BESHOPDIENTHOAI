@@ -90,21 +90,7 @@ namespace BESHOPDIENTHOAI.Controllers
               return Problem("Entity set 'ShopDienThoaiContext.Sales'  is null.");
           }
             _context.Sales.Add(sale);
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateException)
-            {
-                if (SaleExists(sale.IdSale))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetSale", new { id = sale.IdSale }, sale);
         }
